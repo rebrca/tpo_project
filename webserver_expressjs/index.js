@@ -50,10 +50,77 @@ app.get('/users', function(req, res) {
 });
 
 
+app.get('/loby', async function(req, res) {
+  let ime = req.query.ime
+  console.log(ime)
+  if(ime==undefined){
+    res.json("")
+    return;
+  }
+  let sql = `SELECT * FROM  game_loby 
+  WHERE game_name="Counter Strike GO" AND id=${ ime } `;
+  con.query(sql, function(err, data, fields) {
+   
+    if (err) throw err;
+    res.json(
+      data
+    )
+    
+  })
+  
+});
+
+app.get('/tourtament', async function(req, res) {
+  let ime = req.query.ime
+  console.log(ime)
+  if(ime==undefined){
+    res.json("")
+    return;
+  }
+  let sql = `SELECT * FROM  tourtament 
+  WHERE id=${ ime } `;
+  con.query(sql, function(err, data, fields) {
+   
+    if (err) throw err;
+    res.json(
+      data
+    )
+    
+  })
+  
+});
+
+app.get('/get-cs-loby', async function(req, res) {
+ 
+  let sql = `SELECT * FROM  game_loby 
+  WHERE game_name="Counter Strike GO"`;
+  con.query(sql, function(err, data, fields) {
+   
+    if (err) throw err;
+    res.json(
+      data
+    )
+    
+  })
+  
+});
 
 
 
-
+app.get('/get-lol-loby', async function(req, res) {
+ 
+  let sql = `SELECT * FROM  game_loby 
+  WHERE game_name="League of Legends"`;
+  con.query(sql, function(err, data, fields) {
+   
+    if (err) throw err;
+    res.json(
+      data
+    )
+    
+  })
+  
+});
 
 
 

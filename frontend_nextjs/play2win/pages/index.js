@@ -42,8 +42,10 @@ export default function example({ data,data1 }) {
   <br></br>
   <br></br>
   <div className="flex justify-around w-full ">
+  <div class="container mx-auto p-6 grid grid-cols-4 gap-5">
         {data1.map(item => (
-          <Link href={item.name.replace(/\s+/g, '-').toLowerCase()}>
+        
+          <Link href={`/tourtament/${item.id}`} id={item.id}>
           <div key={data.id} className=" h-full hover:brightness-95 cursor-pointer ">
             <div class="bg-white shadow-md border border-gray-200 rounded-lg max-w-sm flex flex-col">
               <a href="#">
@@ -60,6 +62,7 @@ export default function example({ data,data1 }) {
           </div>
           </Link>
         ))}
+        </div>
   </div>
 
 
