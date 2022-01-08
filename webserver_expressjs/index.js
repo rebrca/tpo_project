@@ -52,13 +52,13 @@ app.get('/users', function(req, res) {
 
 app.get('/loby', async function(req, res) {
   let ime = req.query.ime
-  console.log(ime)
+ 
   if(ime==undefined){
     res.json("")
     return;
   }
   let sql = `SELECT * FROM  game_loby 
-  WHERE game_name="Counter Strike GO" AND id=${ ime } `;
+  WHERE id=${ ime } `;
   con.query(sql, function(err, data, fields) {
    
     if (err) throw err;
@@ -72,7 +72,7 @@ app.get('/loby', async function(req, res) {
 
 app.get('/tourtament', async function(req, res) {
   let ime = req.query.ime
-  console.log(ime)
+ 
   if(ime==undefined){
     res.json("")
     return;
@@ -121,8 +121,42 @@ app.get('/get-lol-loby', async function(req, res) {
   })
   
 });
+app.get('/get-loby', async function(req, res) {
+ 
+  let sql = `SELECT * FROM  game_loby `;
+  con.query(sql, function(err, data, fields) {
+   
+    if (err) throw err;
+    res.json(
+      data
+    )
+    
+  })
+  
+});
+app.get('/users-loby',  function(req, res) {
+  let id = req.query.id
+  let sql = `select u.username, u.picture,u.email from user u
+  inner join game_loby_has_user gl on gl.user_id=u.id
+  
+  where gl.game_loby_id=${id}`;
+  con.query(sql, function(err, data, fields) {
+   
+    if (err) throw err;
+    res.json(
+      data
+    )
+    
+  })
+  
+});
 
-
+app.get('/add-loby',  function(req, res) {
+  let id = req.body.ime
+  console.log(id)
+  res.end()
+  
+});
 
 
 app.listen(port, () => {

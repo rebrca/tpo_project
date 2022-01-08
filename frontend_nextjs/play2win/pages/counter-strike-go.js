@@ -38,7 +38,10 @@ export default function counterStrikeGo({ data }) {
   </div>
 
 
-     
+  <div class="p-6 ">
+  <a href="/forma" ><button  class="p-4 bg-blue-700 hover:bg-blue-500 w-full rounded-lg shadow text-xl font-medium uppercase text-white">Dodaj novo sobo!
+      </button></a>
+  </div> 
 
 
       </main>
